@@ -9,7 +9,9 @@
     <style>
         body {
             font-family: 'Helvetica', sans-serif;
-            background-color: #81a7f7;
+            background-image: url('your-background-image.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,10 +19,11 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
+            color: #fff;
         }
 
         #container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -69,12 +72,12 @@
 
 <body>
     <div id="container">
-        <h1>Azusa_Ke</h1>
+        <h1>Your Name</h1>
         <div id="time"></div>
-        <p>时间停摆，往事归来</p>
+        <p>时间停摆，往事归来...</p>
         <div class="contact">
             <img src="email-icon.png" alt="Email Icon">
-            <a href="mailto:you@example.com">zike_zhuo@outlook.com</a>
+            <a href="mailto:zhuo9_9@outlook.com">zhuo9_9@outlook.com</a>
         </div>
         <div class="contact">
             <img src="discord-icon.png" alt="Discord Icon">
@@ -87,7 +90,8 @@
             const now = new Date();
             const hours = now.getHours().toString().padStart(2, '0');
             const minutes = now.getMinutes().toString().padStart(2, '0');
-            const timeString = `${hours}:${minutes}`;
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
             document.getElementById('time').textContent = timeString;
         }
 
