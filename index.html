@@ -2,102 +2,115 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azusa_Ke的个人网站</title>
-    <link rel="icon" type="image/x-icon" href="icon.ico" />
-    <style>
-        body {
-            font-family: 'Helvetica', sans-serif;
-            background-image: url('your-background-image.jpg'); /* Replace with your background image */
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azusa_Ke的个人网站</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      background-image: url('background.jpg'); /* Replace with your background image */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        #container {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px;
-            width: 100%;
-        }
+    .container {
+      width: 35%;
+      height: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px; /* Adjust the radius as needed for rounded corners */
+    }
 
-        h1 {
-            color: #333;
-        }
+    .blur-container {
+      background-image: url('background-s.jpg'); /* Same background image as above */
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      filter: blur(10px); /* Adjust the blur strength as needed */
+      z-index: -1;
+    }
 
-        #time {
-            font-size: 24px;
-            color: #555;
-            margin-bottom: 20px;
-        }
+    .content {
+      text-align: center;
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-        p {
-            color: #777;
-            margin-bottom: 10px;
-        }
+    #time {
+      font-size: 4em;
+      font-weight: bold;
+    }
 
-        .contact {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    #name {
+      font-size: 2.5em;
+      margin: 10px 0;
+    }
 
-        .contact img {
-            width: 30px;
-            margin-right: 10px;
-        }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-        .contact a {
-            text-decoration: none;
-            color: #333;
-            transition: color 0.3s;
-        }
+    .contact a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      margin: 5px;
+    }
 
-        .contact a:hover {
-            color: #007bff;
-        }
-    </style>
+    .contact img {
+      width: 20px;
+      vertical-align: middle;
+      margin: -5px 10px 0 15px;
+    }  
+  </style>
 </head>
 
 <body>
-    <div id="container">
-        <h1>Azusa_Ke</h1>
-        <div id="time"></div>
-        <p>时间停摆，往事归来...</p>
-        <div class="contact">
-            <img src="email-icon.png" alt="Email Icon">
-            <a href="mailto:zhuo9_9@outlook.com">zhuo9_9@outlook.com</a>
-        </div>
-        <div class="contact">
-            <img src="discord-icon.png" alt="Discord Icon">
-            <a href="https://discord.gg/azusake" target="_blank">Azusa_Ke</a>
-        </div>
+  <div class="container">
+    <div class="blur-container"></div>
+    <div class="content">
+      <div id="time"></div>
+      <div id="name">Azusa_Ke</div>
+      <p>时间停摆，往事归来...</p>
+      <div class="contact">
+        <img src="email-icon.png" alt="Email Icon">
+        <a href="mailto:zhuo9_9@outlook.com">给我发邮件</a>
+      </div>
+      <div class="contact">
+        <img src="discord-icon.png" alt="Discord Icon">
+        <a href="https://discord.gg/azusake" target="_blank">Discord联系</a>
+      </div>
     </div>
+  </div>
 
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            const timeString = `${hours}:${minutes}:${seconds}`;
-            document.getElementById('time').textContent = timeString;
-        }
+  <script>
+    function updateTime() {
+      const timeElement = document.getElementById('time');
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
 
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call to display time immediately
-    </script>
+    setInterval(updateTime, 1000);
+  </script>
 </body>
 
 </html>
