@@ -8,3 +8,5 @@ myImage.onclick = function () {
     myImage.setAttribute("src", "images/20231115j9d2kg.png");
   }
 };
+let myButton = document.querySelector("button");
+let myHeading = document.querySelector("h1");
