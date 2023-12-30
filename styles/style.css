@@ -21,7 +21,7 @@ body {
     }
 
 .blur-container {
-      background-image: url(images/background-s.jpg); /* Same background image as above */
+      background-image: url(https://zhuozike.github.io/images/background-s.jpg); /* Same background image as above */
       background-size: cover;
       background-position: center;
       height: 100%;
