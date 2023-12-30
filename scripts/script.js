@@ -1,3 +1,4 @@
+alert("欢迎来到我的个人网站")
 function updateTime() {
       const timeElement = document.getElementById('time');
       const now = new Date();
@@ -6,5 +7,4 @@ function updateTime() {
       const seconds = now.getSeconds().toString().padStart(2, '0');
       timeElement.textContent = `${hours}:${minutes}:${seconds}`;
     }
-
-    setInterval(updateTime, 1000);
+setInterval(updateTime, 1000);
