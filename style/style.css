@@ -12,7 +12,7 @@ body {
       justify-content: center;
     }
 
-    .container {
+.container {
       width: 35%;
       height: 50%;
       position: relative;
@@ -20,7 +20,7 @@ body {
       border-radius: 20px; /* Adjust the radius as needed for rounded corners */
     }
 
-    .blur-container {
+.blur-container {
       background-image: url('background-s.jpg'); /* Same background image as above */
       background-size: cover;
       background-position: center;
@@ -31,7 +31,7 @@ body {
       z-index: -1;
     }
 
-    .content {
+.content {
       text-align: center;
       color: #fff;
       position: absolute;
@@ -40,31 +40,31 @@ body {
       transform: translate(-50%, -50%);
     }
 
-    #time {
+#time {
       font-size: 4em;
       font-weight: bold;
     }
 
-    #name {
+#name {
       font-size: 2.5em;
       margin: 10px 0;
     }
 
-    .contact-info {
+.contact-info {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 20px;
     }
 
-    .contact a {
+.contact a {
       color: #fff;
       text-decoration: none;
       font-size: 1.2em;
       margin: 5px;
     }
 
-    .contact img {
+.contact img {
       width: 20px;
       vertical-align: middle;
       margin: -5px 10px 0 15px;
