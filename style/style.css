@@ -1,4 +1,71 @@
-p
-{
-color : red
-}
+body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      background-image: url('background.jpg'); /* Replace with your background image */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 35%;
+      height: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px; /* Adjust the radius as needed for rounded corners */
+    }
+
+    .blur-container {
+      background-image: url('background-s.jpg'); /* Same background image as above */
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      filter: blur(10px); /* Adjust the blur strength as needed */
+      z-index: -1;
+    }
+
+    .content {
+      text-align: center;
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #time {
+      font-size: 4em;
+      font-weight: bold;
+    }
+
+    #name {
+      font-size: 2.5em;
+      margin: 10px 0;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .contact a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      margin: 5px;
+    }
+
+    .contact img {
+      width: 20px;
+      vertical-align: middle;
+      margin: -5px 10px 0 15px;
+    }
