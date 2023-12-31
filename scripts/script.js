@@ -1,4 +1,4 @@
-alert("欢迎来到我的个人网站")
+window.onload = alert("欢迎来到我的个人网站")
 function updateTime() {
       const timeElement = document.getElementById('time');
       const now = new Date();
