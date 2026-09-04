@@ -71,19 +71,16 @@ svg {
 .page-shell {
   position: relative;
   min-height: 100svh;
-  isolation: isolate;
-  overflow: clip;
 }
 
 .background-layer {
-  position: fixed;
-  z-index: -2;
+  position: absolute;
+  z-index: 0;
   inset: 0;
   pointer-events: none;
   background-image: linear-gradient(120deg, rgba(3, 7, 25, 0.65), rgba(9, 12, 50, 0.27) 45%, rgba(26, 8, 56, 0.52)), url("/images/background.jpg");
   background-position: center;
   background-size: cover;
-  transform: scale(1.025);
 }
 
 .background-layer::before,
@@ -215,7 +212,6 @@ svg {
 
 .site-main {
   position: relative;
-  z-index: 1;
 }
 
 .page-content {
@@ -582,10 +578,10 @@ svg {
 .glass-surface {
   background: linear-gradient(145deg, rgba(31, 48, 104, 0.54), rgba(15, 19, 63, 0.57));
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: var(--glass-surface-radius, 24px);
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(24px) saturate(145%);
-  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(var(--glass-surface-blur, 24px)) saturate(var(--glass-surface-saturation, 145%));
+  backdrop-filter: blur(var(--glass-surface-blur, 24px)) saturate(var(--glass-surface-saturation, 145%));
 }
 
 .content-section {
@@ -933,6 +929,13 @@ svg {
   line-height: 1.9;
 }
 
+.page-intro .playground-saved-note {
+  margin-top: 14px;
+  color: #8edfff;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
 .project-grid--large .project-card {
   min-height: 390px;
 }
@@ -1183,23 +1186,44 @@ svg {
 
 .glass-preview-backdrop {
   position: relative;
-  display: grid;
   min-height: 560px;
   overflow: hidden;
-  place-items: center;
-  isolation: isolate;
   border: 1px solid rgba(190, 222, 255, 0.22);
   border-radius: 24px;
-  background:
-    linear-gradient(135deg, rgba(11, 22, 65, 0.4), rgba(24, 8, 67, 0.45)),
-    url("/images/background.jpg") center / cover;
+  background: #090d2b;
   box-shadow: var(--shadow);
 }
 
-.glass-preview-backdrop::before {
+.glass-demo-scroll {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glass-demo-content {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(11, 22, 65, 0.42), rgba(24, 8, 67, 0.5)),
+    url("/images/background.jpg") center / cover;
+}
+
+.glass-demo-content::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: linear-gradient(rgba(220, 239, 255, 0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 239, 255, 0.16) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, #000, transparent 88%);
+  opacity: 0.26;
+}
+
+.glass-demo-content::after {
+  position: absolute;
+  inset: 0;
   content: "";
   background:
     radial-gradient(circle at 16% 22%, rgba(93, 239, 255, 0.5), transparent 24%),
@@ -1208,19 +1232,15 @@ svg {
   mix-blend-mode: screen;
 }
 
-.preview-grid-lines {
+.glass-demo-orb,
+.glass-demo-ribbon,
+.glass-demo-content__label,
+.glass-demo-content__bars {
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: linear-gradient(rgba(220, 239, 255, 0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 239, 255, 0.16) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: linear-gradient(180deg, #000, transparent 88%);
-  opacity: 0.26;
+  z-index: 1;
 }
 
-.preview-orb {
-  position: absolute;
-  z-index: -1;
+.glass-demo-orb {
   width: clamp(110px, 18vw, 220px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -1228,26 +1248,85 @@ svg {
   opacity: 0.72;
 }
 
-.preview-orb--cyan {
+.glass-demo-orb--cyan {
   top: 18%;
   left: 11%;
   background: radial-gradient(circle at 30% 30%, #dbffff, #23d9ff 30%, rgba(23, 79, 255, 0.05) 70%);
 }
 
-.preview-orb--purple {
+.glass-demo-orb--purple {
   top: 13%;
   right: 9%;
   background: radial-gradient(circle at 35% 32%, #fff0ff, #b26cff 32%, rgba(110, 38, 255, 0.04) 70%);
 }
 
-.preview-orb--pink {
+.glass-demo-orb--pink {
   right: 20%;
   bottom: 8%;
   background: radial-gradient(circle at 35% 30%, #fff0fc, #ff53bd 31%, rgba(255, 53, 141, 0.03) 70%);
 }
 
+.glass-demo-ribbon {
+  height: 16px;
+  border-radius: 999px;
+  opacity: 0.9;
+  transform: rotate(-25deg);
+}
+
+.glass-demo-ribbon--cyan {
+  top: 30%;
+  left: -4%;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, #68f4ff, transparent);
+}
+
+.glass-demo-ribbon--purple {
+  top: 53%;
+  right: -7%;
+  width: 48%;
+  background: linear-gradient(90deg, transparent, #b08aff, transparent);
+  transform: rotate(26deg);
+}
+
+.glass-demo-ribbon--pink {
+  bottom: 19%;
+  left: 28%;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, #ff7acb, transparent);
+  transform: rotate(-8deg);
+}
+
+.glass-demo-content__label {
+  top: 30px;
+  right: 28px;
+  color: rgba(224, 239, 255, 0.78);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.13em;
+}
+
+.glass-demo-content__bars {
+  right: 28px;
+  bottom: 30px;
+  left: 28px;
+  display: flex;
+  gap: 8px;
+}
+
+.glass-demo-content__bars span {
+  height: 7px;
+  flex: 1;
+  border-radius: 999px;
+}
+
+.glass-demo-content__bars span:nth-child(1) { background: #6ef5ff; }
+.glass-demo-content__bars span:nth-child(2) { background: #9c83ff; }
+.glass-demo-content__bars span:nth-child(3) { background: #ff73c6; }
+.glass-demo-content__bars span:nth-child(4) { background: #ffe288; }
+
 .preview-stamp {
   position: absolute;
+  z-index: 3;
   top: 24px;
   left: 26px;
   color: #c9ddff;
@@ -1257,10 +1336,11 @@ svg {
 }
 
 .playground-liquid-host {
-  position: relative;
-  z-index: 1;
-  width: min(calc(100% - 48px), 520px);
-  min-height: 330px;
+  position: absolute;
+  inset: 0;
+  width: auto;
+  min-height: 0;
+  pointer-events: none;
 }
 
 .playground-liquid-host > div,
@@ -1271,8 +1351,8 @@ svg {
 }
 
 .playground-liquid-glass {
-  z-index: 1;
-  width: 100%;
+  width: min(calc(100% - 48px), 520px);
+  pointer-events: auto;
 }
 
 .playground-liquid-glass .glass {
@@ -1355,6 +1435,7 @@ svg {
 
 .preview-card-caption {
   position: absolute;
+  z-index: 3;
   right: 26px;
   bottom: 24px;
   color: #b3c8ee;
@@ -1630,8 +1711,9 @@ code {
   }
 
   .playground-liquid-host {
-    width: calc(100% - 32px);
-    min-height: 310px;
+    inset: 0;
+    width: auto;
+    min-height: 0;
   }
 
   .playground-glass-card {

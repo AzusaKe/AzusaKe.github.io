@@ -1,32 +1,13 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import LiquidGlass from "liquid-glass-react";
+import { useGlassSettings, type GlassMode, type GlassSettings } from "../components/GlassSettings";
 import { GlassSurface } from "../components/GlassSurface";
 import { Icon } from "../components/Icon";
 
-type GlassMode = "standard" | "polar" | "prominent" | "shader";
-type NumericSetting = "displacementScale" | "blurAmount" | "saturation" | "aberrationIntensity" | "elasticity" | "cornerRadius";
-
-interface GlassSettings {
-  mode: GlassMode;
-  displacementScale: number;
-  blurAmount: number;
-  saturation: number;
-  aberrationIntensity: number;
-  elasticity: number;
-  cornerRadius: number;
-  overLight: boolean;
-}
-
-const defaultSettings: GlassSettings = {
-  mode: "standard",
-  displacementScale: 100,
-  blurAmount: 0.5,
-  saturation: 140,
-  aberrationIntensity: 2,
-  elasticity: 0,
-  cornerRadius: 32,
-  overLight: false,
-};
+type NumericSetting = keyof Pick<
+  GlassSettings,
+  "displacementScale" | "blurAmount" | "saturation" | "aberrationIntensity" | "elasticity" | "cornerRadius"
+>;
 
 const glassModes: Array<{ value: GlassMode; label: string }> = [
   { value: "standard", label: "standard · 通用" },
@@ -80,10 +61,10 @@ function RangeControl({
 }
 
 export function GlassPlaygroundPage() {
-  const [settings, setSettings] = useState<GlassSettings>(defaultSettings);
+  const { settings, updateSettings, resetSettings } = useGlassSettings();
 
   const updateNumber = (key: NumericSetting, value: number) => {
-    setSettings((current) => ({ ...current, [key]: value }));
+    updateSettings({ [key]: value });
   };
 
   const configText = useMemo(
@@ -111,6 +92,7 @@ export function GlassPlaygroundPage() {
         <p className="eyebrow"><span className="eyebrow__line" aria-hidden="true" />LIQUID GLASS LAB</p>
         <h1 id="glass-playground-title">液态玻璃调试<span className="accent">.</span></h1>
         <p>把色散、折射、模糊和回弹参数放到手边，拖动滑块就能即时观察效果。彩色背景是用来帮助辨认边缘色散的。</p>
+        <p className="playground-saved-note">当前参数会应用到全站玻璃面板，并保存到本机浏览器。</p>
       </section>
 
       <div className="glass-playground-layout">
@@ -120,7 +102,7 @@ export function GlassPlaygroundPage() {
               <p className="section-kicker">PARAMETERS</p>
               <h2>参数面板</h2>
             </div>
-            <button className="reset-button" type="button" onClick={() => setSettings(defaultSettings)}>
+            <button className="reset-button" type="button" onClick={resetSettings}>
               重置
             </button>
           </div>
@@ -136,7 +118,7 @@ export function GlassPlaygroundPage() {
                     name="glass-mode"
                     value={mode.value}
                     checked={settings.mode === mode.value}
-                    onChange={() => setSettings((current) => ({ ...current, mode: mode.value }))}
+                    onChange={() => updateSettings({ mode: mode.value })}
                   />
                   <span>{mode.label}</span>
                 </label>
@@ -218,7 +200,7 @@ export function GlassPlaygroundPage() {
               id="over-light"
               type="checkbox"
               checked={settings.overLight}
-              onChange={(event) => setSettings((current) => ({ ...current, overLight: event.target.checked }))}
+              onChange={(event) => updateSettings({ overLight: event.target.checked })}
             />
             <span>
               <span>浅色背景模式</span>
@@ -233,10 +215,18 @@ export function GlassPlaygroundPage() {
 
         <section className="glass-preview-panel" aria-label="液态玻璃效果预览">
           <div className="glass-preview-backdrop">
-            <span className="preview-grid-lines" aria-hidden="true" />
-            <span className="preview-orb preview-orb--cyan" aria-hidden="true" />
-            <span className="preview-orb preview-orb--purple" aria-hidden="true" />
-            <span className="preview-orb preview-orb--pink" aria-hidden="true" />
+            <div className="glass-demo-scroll" aria-hidden="true">
+              <div className="glass-demo-content">
+                <span className="glass-demo-orb glass-demo-orb--cyan" />
+                <span className="glass-demo-orb glass-demo-orb--purple" />
+                <span className="glass-demo-orb glass-demo-orb--pink" />
+                <span className="glass-demo-ribbon glass-demo-ribbon--cyan" />
+                <span className="glass-demo-ribbon glass-demo-ribbon--purple" />
+                <span className="glass-demo-ribbon glass-demo-ribbon--pink" />
+                <div className="glass-demo-content__label">BACKDROP / COLOR FIELD</div>
+                <div className="glass-demo-content__bars"><span /><span /><span /><span /></div>
+              </div>
+            </div>
             <p className="preview-stamp">LIVE PREVIEW / 01</p>
             <div className="playground-liquid-host">
               <LiquidGlass
@@ -282,7 +272,7 @@ export function GlassPlaygroundPage() {
 
       <div className="playground-note-panel" role="note">
         <Icon name="info" size={17} />
-        <p>这个调试页使用的是站点正式依赖的同一套 liquid-glass-react 组件；调好参数后，可以把当前值复制回组件配置。</p>
+        <p>这个调试页使用的是站点正式依赖的同一套 liquid-glass-react 组件；当前配置会直接驱动首页、作品集和实验室里的玻璃面板。</p>
       </div>
     </div>
   );

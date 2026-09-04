@@ -1,4 +1,5 @@
 import { SiteShell, type SitePage } from "./components/SiteShell";
+import { GlassSettingsProvider } from "./components/GlassSettings";
 import { HomePage } from "./pages/HomePage";
 import { LabPage } from "./pages/LabPage";
 import { GlassPlaygroundPage } from "./pages/GlassPlaygroundPage";
@@ -18,5 +19,9 @@ function pageContent(page: SitePage) {
 export function App({ page }: AppProps) {
   const currentPage: SitePage = page === "projects" || page === "lab" || page === "glass" ? page : "home";
 
-  return <SiteShell page={currentPage}>{pageContent(currentPage)}</SiteShell>;
+  return (
+    <GlassSettingsProvider>
+      <SiteShell page={currentPage}>{pageContent(currentPage)}</SiteShell>
+    </GlassSettingsProvider>
+  );
 }

@@ -1,5 +1,6 @@
 import type { AnchorHTMLAttributes } from "react";
 import LiquidGlass from "liquid-glass-react";
+import { useGlassSettings } from "./GlassSettings";
 import type { IconName } from "../types/content";
 import { Icon } from "./Icon";
 
@@ -10,17 +11,20 @@ interface LiquidActionProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>
 }
 
 export function LiquidAction({ children, icon = "arrow-up-right", variant = "primary", ...linkProps }: LiquidActionProps) {
+  const { settings } = useGlassSettings();
+
   return (
     <span className="liquid-action-host">
       <LiquidGlass
         className="liquid-action-glass"
-        mode="standard"
-        displacementScale={64}
-        blurAmount={0.1}
-        saturation={130}
-        aberrationIntensity={2}
-        elasticity={0.35}
+        mode={settings.mode}
+        displacementScale={settings.displacementScale}
+        blurAmount={settings.blurAmount}
+        saturation={settings.saturation}
+        aberrationIntensity={settings.aberrationIntensity}
+        elasticity={settings.elasticity}
         cornerRadius={999}
+        overLight={settings.overLight}
         padding="0"
       >
         <a className={`button button-${variant}`} {...linkProps}>
