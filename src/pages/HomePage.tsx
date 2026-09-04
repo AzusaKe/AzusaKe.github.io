@@ -1,9 +1,9 @@
 import { featuredBlogs, profile, projects, socialLinks } from "../content/site";
 import { BlogCard } from "../components/BlogCard";
-import { GlassSurface } from "../components/GlassSurface";
 import { Icon } from "../components/Icon";
 import { LiquidAction, PlainAction } from "../components/LiquidAction";
 import { LiquidHeroCard } from "../components/LiquidHeroCard";
+import { LiquidPanel } from "../components/LiquidPanel";
 import { LiveClock } from "../components/LiveClock";
 import { ProjectCard } from "../components/ProjectCard";
 
@@ -68,7 +68,7 @@ export function HomePage() {
       </section>
 
       <section className="contact-section" aria-labelledby="contact-heading">
-        <GlassSurface className="contact-panel">
+        <LiquidPanel className="contact-panel">
           <div>
             <p className="section-kicker">OPEN CHANNEL</p>
             <h2 id="contact-heading">找我，或者只是打个招呼。</h2>
@@ -82,7 +82,7 @@ export function HomePage() {
               </a>
             ))}
           </div>
-        </GlassSurface>
+        </LiquidPanel>
       </section>
     </div>
   );

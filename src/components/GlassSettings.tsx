@@ -26,7 +26,7 @@ export const defaultGlassSettings: GlassSettings = {
   blurAmount: 0.5,
   saturation: 140,
   aberrationIntensity: 2,
-  elasticity: 0,
+  elasticity: 0.1,
   cornerRadius: 32,
   overLight: false,
 };

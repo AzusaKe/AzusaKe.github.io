@@ -557,6 +557,34 @@ svg {
   width: 100%;
 }
 
+.liquid-panel-host {
+  position: relative;
+  min-width: 0;
+}
+
+.liquid-panel-host > div,
+.liquid-panel-host > span {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+}
+
+.liquid-panel-glass {
+  width: 100%;
+}
+
+.liquid-panel-glass .glass {
+  display: block !important;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(190, 222, 255, 0.28);
+}
+
+.liquid-panel-content {
+  width: 100%;
+}
+
 .project-card-shell {
   min-height: 340px;
 }
@@ -570,7 +598,8 @@ svg {
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .liquid-card-glass .glass {
+  .liquid-card-glass .glass,
+  .liquid-panel-glass .glass {
     background: var(--panel-solid);
   }
 }
@@ -810,6 +839,11 @@ svg {
 }
 
 .contact-panel {
+  width: 100%;
+  min-height: 240px;
+}
+
+.contact-panel .liquid-panel-content {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
   gap: clamp(28px, 7vw, 96px);
@@ -1324,6 +1358,14 @@ svg {
 .glass-demo-content__bars span:nth-child(3) { background: #ff73c6; }
 .glass-demo-content__bars span:nth-child(4) { background: #ffe288; }
 
+.hero-liquid-glass .glass__warp,
+.liquid-action-glass .glass__warp,
+.liquid-card-glass .glass__warp,
+.liquid-panel-glass .glass__warp,
+.playground-liquid-glass .glass__warp {
+  border-radius: inherit;
+}
+
 .preview-stamp {
   position: absolute;
   z-index: 3;
@@ -1530,6 +1572,7 @@ code {
   .hero-liquid-glass .glass,
   .liquid-action-glass .glass,
   .liquid-card-glass .glass,
+  .liquid-panel-glass .glass,
   .playground-liquid-glass .glass {
     background: var(--panel-solid);
   }
@@ -1546,6 +1589,11 @@ code {
   }
 
   .contact-panel {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  .contact-panel .liquid-panel-content {
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }
@@ -1708,6 +1756,10 @@ code {
 
   .glass-preview-backdrop {
     min-height: 430px;
+  }
+
+  .contact-panel {
+    min-height: 400px;
   }
 
   .playground-liquid-host {
