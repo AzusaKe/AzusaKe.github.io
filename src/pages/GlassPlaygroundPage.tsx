@@ -19,14 +19,21 @@ interface GlassSettings {
 
 const defaultSettings: GlassSettings = {
   mode: "standard",
-  displacementScale: 42,
-  blurAmount: 0.08,
-  saturation: 155,
-  aberrationIntensity: 4,
-  elasticity: 0.18,
-  cornerRadius: 30,
+  displacementScale: 100,
+  blurAmount: 0.5,
+  saturation: 140,
+  aberrationIntensity: 2,
+  elasticity: 0,
+  cornerRadius: 32,
   overLight: false,
 };
+
+const glassModes: Array<{ value: GlassMode; label: string }> = [
+  { value: "standard", label: "standard · 通用" },
+  { value: "polar", label: "polar · 极坐标" },
+  { value: "prominent", label: "prominent · 强折射" },
+  { value: "shader", label: "shader · 实验性" },
+];
 
 interface RangeControlProps {
   id: string;
@@ -86,7 +93,7 @@ export function GlassPlaygroundPage() {
       "  displacementScale={" + settings.displacementScale + "}",
       "  blurAmount={" + settings.blurAmount.toFixed(2) + "}",
       "  saturation={" + settings.saturation + "}",
-      "  aberrationIntensity={" + settings.aberrationIntensity.toFixed(1) + "}",
+      "  aberrationIntensity={" + settings.aberrationIntensity.toFixed(0) + "}",
       "  elasticity={" + settings.elasticity.toFixed(2) + "}",
       "  cornerRadius={" + settings.cornerRadius + "}",
       "  overLight={" + settings.overLight + "}",
@@ -118,38 +125,44 @@ export function GlassPlaygroundPage() {
             </button>
           </div>
 
-          <label className="mode-control" htmlFor="glass-mode">
-            <span>折射模式</span>
-            <select
-              id="glass-mode"
-              value={settings.mode}
-              onChange={(event) => setSettings((current) => ({ ...current, mode: event.target.value as GlassMode }))}
-            >
-              <option value="standard">standard · 通用</option>
-              <option value="polar">polar · 极坐标</option>
-              <option value="prominent">prominent · 强折射</option>
-              <option value="shader">shader · 实验性</option>
-            </select>
-          </label>
+          <fieldset className="mode-control">
+            <legend>折射模式</legend>
+            <div className="mode-options">
+              {glassModes.map((mode) => (
+                <label className="mode-option" htmlFor={"glass-mode-" + mode.value} key={mode.value}>
+                  <input
+                    id={"glass-mode-" + mode.value}
+                    type="radio"
+                    name="glass-mode"
+                    value={mode.value}
+                    checked={settings.mode === mode.value}
+                    onChange={() => setSettings((current) => ({ ...current, mode: mode.value }))}
+                  />
+                  <span>{mode.label}</span>
+                </label>
+              ))}
+            </div>
+            <p className="control-hint">控制折射计算方式</p>
+          </fieldset>
 
           <div className="range-list">
             <RangeControl
               id="displacement-scale"
               label="位移强度"
-              hint="displacementScale · 0 — 100"
+              hint="displacementScale · 0 — 200"
               value={settings.displacementScale}
               min={0}
-              max={100}
+              max={200}
               step={1}
               onChange={(value) => updateNumber("displacementScale", value)}
             />
             <RangeControl
               id="blur-amount"
               label="模糊量"
-              hint="blurAmount · 0 — 0.30"
+              hint="blurAmount · 0 — 1.00"
               value={settings.blurAmount}
               min={0}
-              max={0.3}
+              max={1}
               step={0.01}
               formatValue={(value) => value.toFixed(2)}
               onChange={(value) => updateNumber("blurAmount", value)}
@@ -157,23 +170,23 @@ export function GlassPlaygroundPage() {
             <RangeControl
               id="saturation"
               label="饱和度"
-              hint="saturation · 80 — 240%"
+              hint="saturation · 100 — 300%"
               value={settings.saturation}
-              min={80}
-              max={240}
-              step={1}
+              min={100}
+              max={300}
+              step={10}
               formatValue={(value) => value + "%"}
               onChange={(value) => updateNumber("saturation", value)}
             />
             <RangeControl
               id="aberration-intensity"
               label="色散强度"
-              hint="aberrationIntensity · 0 — 10"
+              hint="aberrationIntensity · 0 — 20"
               value={settings.aberrationIntensity}
               min={0}
-              max={10}
-              step={0.1}
-              formatValue={(value) => value.toFixed(1)}
+              max={20}
+              step={1}
+              formatValue={(value) => value.toFixed(0)}
               onChange={(value) => updateNumber("aberrationIntensity", value)}
             />
             <RangeControl
@@ -183,17 +196,17 @@ export function GlassPlaygroundPage() {
               value={settings.elasticity}
               min={0}
               max={1}
-              step={0.01}
+              step={0.05}
               formatValue={(value) => value.toFixed(2)}
               onChange={(value) => updateNumber("elasticity", value)}
             />
             <RangeControl
               id="corner-radius"
               label="圆角"
-              hint="cornerRadius · 0 — 80px"
+              hint="cornerRadius · 0 — 100px"
               value={settings.cornerRadius}
               min={0}
-              max={80}
+              max={100}
               step={1}
               formatValue={(value) => value + "px"}
               onChange={(value) => updateNumber("cornerRadius", value)}

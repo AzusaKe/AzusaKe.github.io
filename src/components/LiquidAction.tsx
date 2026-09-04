@@ -15,11 +15,11 @@ export function LiquidAction({ children, icon = "arrow-up-right", variant = "pri
       <LiquidGlass
         className="liquid-action-glass"
         mode="standard"
-        displacementScale={18}
-        blurAmount={0.08}
-        saturation={145}
-        aberrationIntensity={1.2}
-        elasticity={0.12}
+        displacementScale={64}
+        blurAmount={0.1}
+        saturation={130}
+        aberrationIntensity={2}
+        elasticity={0.35}
         cornerRadius={999}
         padding="0"
       >

@@ -11,11 +11,11 @@ export function LiquidCard({ className = "", children }: LiquidCardProps) {
       <LiquidGlass
         className="liquid-card-glass"
         mode="standard"
-        displacementScale={24}
-        blurAmount={0.1}
-        saturation={150}
-        aberrationIntensity={1.8}
-        elasticity={0.14}
+        displacementScale={100}
+        blurAmount={0.5}
+        saturation={140}
+        aberrationIntensity={2}
+        elasticity={0}
         cornerRadius={24}
         padding="0"
       >
