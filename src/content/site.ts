@@ -37,8 +37,8 @@ export const projects: Project[] = [
   {
     title: "Halo",
     status: "live",
-    description: "一个为 Minecraft Fabric 1.20.1 制作的 Halo 模组。",
-    tags: ["Java", "Fabric", "Minecraft"],
+    description: "Halo 模组目前覆盖 Minecraft 1.20.1–26.2，包含 Fabric、Forge/NeoForge 共 8 个分支，以及 1 个网易适配分支。",
+    tags: ["Java", "Fabric", "Forge/NeoForge", "网易适配"],
     url: "https://github.com/AzusaKe/Halo",
   },
   {
