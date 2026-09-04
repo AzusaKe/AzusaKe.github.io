@@ -33,4 +33,4 @@ npm run preview
 
 `.github/workflows/deploy.yml` 会在 `main` 分支更新后构建并发布 `dist`。`test-site`、测试图片和 `server_texture.zip` 保留在源码仓库中，但不会被复制到正式构建产物。
 
-默认入口是 `https://azusake.github.io/`。`profile.azusake.network` 可以继续作为自定义入口；发布前需要在域名侧完成 DNS 和 HTTPS 证书配置，站点不会绕过浏览器的证书安全提示。
+默认入口是 `https://azusake.github.io/`。如需启用 `profile.azusake.network`，请在仓库的 `Settings → Pages → Custom domain` 中设置该域名，并在 DNS 中保留指向 `azusake.github.io` 的 CNAME 记录。当前使用自定义 GitHub Actions 工作流发布，域名绑定以 Pages 设置为准；HTTPS 证书由 GitHub Pages 自动签发，期间可能需要等待一段时间，站点不会绕过浏览器的证书安全提示。
