@@ -1,36 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Azusa_Ke" />
-  <meta name="keywords" content="Azusa_Ke" />
-  <meta name="description" content="A Personal Website" />
-  <title>Azusa_Ke的个人网站</title>
-  <link rel="icon" type="image/x-icon" href="https://azusake.github.io/icon.ico" />
-  <link rel="stylesheet" type="text/css" href="styles/style.css" />
-</head>
-<body>
-  <div class="container">
-    <div class="blur-container"></div>
-    <div class="content">
-      <div id="time"></div>
-      <div id="name">Azusa_Ke</div>
-      <p>时间停摆，往事归来...</p>
-      <div class="contact">
-        <img src="images/email-icon.png" alt="Email Icon" title="给我发邮件">
-        <a href="mailto:zhuo9_9@outlook.com">给我发邮件</a>
-      </div>
-      <div class="contact">
-        <img src="images/discord-icon.png" alt="Discord Icon" title="Discord联系">
-        <a href="https://discord.gg/azusake" target="_blank">Discord联系</a>
-      </div>
-      <div class="contact">
-        <img src="icon.ico" alt="Blog Icon" title="来我的个人博客">
-        <a href="https://blog.azusake.network" target="_blank">来我的个人博客</a>
-      </div>
-    </div>
-  </div>
-  <script src="scripts/script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080d27" />
+    <meta name="author" content="Azusa_Ke" />
+    <meta name="description" content="Azusa_Ke 的个人主页：Minecraft 模组、代码实验和博客入口。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Azusa_Ke · 个人主页" />
+    <meta property="og:description" content="Minecraft 模组、代码实验和博客入口。" />
+    <meta property="og:url" content="https://azusake.github.io/" />
+    <link rel="canonical" href="https://azusake.github.io/" />
+    <link rel="icon" type="image/x-icon" href="/icon.ico" />
+    <title>Azusa_Ke · 个人主页</title>
+  </head>
+  <body>
+    <div id="app" data-page="home"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
