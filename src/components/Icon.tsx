@@ -60,6 +60,15 @@ export function Icon({ name, size = 18 }: IconProps) {
     );
   }
 
+  if (name === "info") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M12 10.8v5.1M12 7.7v.1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
   return (
     <svg {...commonProps}>
       <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />

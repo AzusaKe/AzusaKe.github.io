@@ -3,7 +3,7 @@ import { profile, socialLinks } from "../content/site";
 import type { IconName } from "../types/content";
 import { Icon } from "./Icon";
 
-export type SitePage = "home" | "projects" | "lab";
+export type SitePage = "home" | "projects" | "lab" | "glass";
 
 interface SiteShellProps extends PropsWithChildren {
   page: SitePage;
@@ -31,21 +31,25 @@ export function SiteShell({ page, children }: SiteShellProps) {
       <header className="site-header">
         <div className="site-header__inner">
           <a className="brand" href="/" aria-label="返回 Azusa_Ke 首页">
-            <span className="brand-mark" aria-hidden="true">AK</span>
+            <img className="brand-favicon" src="/icon.ico" alt="" width="32" height="32" />
             <span className="brand-name">Azusa_Ke</span>
           </a>
           <nav className="site-nav" aria-label="主导航">
-            {navItems.map((item) => (
-              <a
-                className={`site-nav__link ${item.page === page ? "is-active" : ""}`.trim()}
-                href={item.href}
-                aria-current={item.page === page ? "page" : undefined}
-                key={item.label}
-                {...externalProps(item.href)}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.page === page || (item.page === "lab" && page === "glass");
+
+              return (
+                <a
+                  className={`site-nav__link ${isActive ? "is-active" : ""}`.trim()}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  key={item.label}
+                  {...externalProps(item.href)}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </header>
@@ -62,6 +66,10 @@ export function SiteShell({ page, children }: SiteShellProps) {
                 <span>{link.name}</span>
               </a>
             ))}
+            <a href="/THIRD-PARTY-NOTICES.md">
+              <Icon name="info" size={15} />
+              <span>许可</span>
+            </a>
           </div>
         </div>
       </footer>

@@ -1,6 +1,7 @@
 import { labExperiments } from "../content/site";
 import { GlassSurface } from "../components/GlassSurface";
 import { Icon } from "../components/Icon";
+import { LiquidCard } from "../components/LiquidCard";
 
 export function LabPage() {
   return (
@@ -13,7 +14,7 @@ export function LabPage() {
 
       <section className="lab-grid" aria-label="实验页面列表">
         {labExperiments.map((experiment, index) => (
-          <GlassSurface className="lab-card" key={experiment.title}>
+          <LiquidCard className="lab-card" key={experiment.title}>
             <div className="card-meta">
               <span className="section-kicker">0{index + 1} / {experiment.label}</span>
               <span className="lab-card__mark" aria-hidden="true">↗</span>
@@ -21,7 +22,7 @@ export function LabPage() {
             <h2>{experiment.title}</h2>
             <p>{experiment.description}</p>
             <a className="text-link" href={experiment.url}>打开实验页面 <Icon name="arrow-up-right" size={16} /></a>
-          </GlassSurface>
+          </LiquidCard>
         ))}
       </section>
 

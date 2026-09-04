@@ -12,7 +12,7 @@ function copySelectedLegacyPages(): Plugin {
       outputDirectory = resolve(config.root, config.build.outDir);
     },
     closeBundle() {
-      const filesToCopy = ["icon.ico", "hacker.html"];
+      const filesToCopy = ["icon.ico", "hacker.html", "THIRD-PARTY-NOTICES.md"];
       const directoriesToCopy = ["images", "galaxy"];
 
       for (const relativePath of filesToCopy) {
@@ -45,6 +45,7 @@ export default defineConfig({
         home: resolve(process.cwd(), "index.html"),
         projects: resolve(process.cwd(), "projects/index.html"),
         lab: resolve(process.cwd(), "lab/index.html"),
+        glass: resolve(process.cwd(), "lab/glass/index.html"),
       },
     },
   },

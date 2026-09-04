@@ -1,6 +1,6 @@
 export type ProjectStatus = "live" | "coming-soon";
 
-export type IconName = "github" | "blog" | "discord" | "mail" | "arrow-up-right" | "spark";
+export type IconName = "github" | "blog" | "discord" | "mail" | "arrow-up-right" | "spark" | "info";
 
 export interface Project {
   title: string;

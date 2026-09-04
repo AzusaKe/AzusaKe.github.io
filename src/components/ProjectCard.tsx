@@ -1,5 +1,6 @@
 import type { Project } from "../types/content";
 import { Icon } from "./Icon";
+import { LiquidCard } from "./LiquidCard";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,7 +11,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const isComingSoon = project.status === "coming-soon";
 
   return (
-    <article className="project-card glass-surface">
+    <LiquidCard className="project-card-shell">
+      <article className="project-card">
       <div className="card-meta">
         <span className={`status-chip status-chip--${project.status}`}>
           <span className="status-chip__dot" aria-hidden="true" />
@@ -37,6 +39,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <span className="card-action__muted">公开信息整理中</span>
         )}
       </div>
-    </article>
+      </article>
+    </LiquidCard>
   );
 }

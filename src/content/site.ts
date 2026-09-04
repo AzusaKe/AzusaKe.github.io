@@ -72,6 +72,12 @@ export const featuredBlogs: BlogFeature[] = [
 
 export const labExperiments = [
   {
+    title: "Liquid Glass",
+    label: "参数调试",
+    description: "用滑块实时调整液态玻璃参数，观察色散、折射和弹性的变化。",
+    url: "/lab/glass/",
+  },
+  {
     title: "Galaxy",
     label: "视觉实验",
     description: "保留原有的 Galaxy 视觉实验页，旧路径仍然可以直接访问。",
