@@ -420,6 +420,7 @@ svg {
   width: 100%;
   min-width: 0;
   min-height: clamp(320px, 37vw, 460px);
+  container: hero-card / inline-size;
 }
 
 .hero-liquid-host > div,
@@ -481,28 +482,45 @@ svg {
 }
 
 .hero-card-time-wrap {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: max-content max-content;
   align-items: baseline;
-  gap: 12px;
+  gap: 7px;
   margin-top: clamp(60px, 9vw, 108px);
 }
 
 .live-clock {
+  display: block;
+  width: 3.25em;
+  min-width: 3.25em;
   color: #f4f7ff;
   font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-feature-settings: "tnum" 1;
   font-variant-numeric: tabular-nums;
   font-weight: 310;
   letter-spacing: -0.08em;
   line-height: 1;
+  white-space: nowrap;
   text-shadow: 0 3px 28px rgba(145, 190, 255, 0.24);
 }
 
 .hero-card-time-zone {
+  white-space: nowrap;
   color: var(--cyan);
   font-size: 0.68rem;
   font-weight: 720;
   letter-spacing: 0.12em;
+}
+
+@container hero-card (max-width: 448px) {
+  .hero-card-time-wrap {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 8px;
+  }
+
+  .hero-card-time-zone {
+    justify-self: start;
+  }
 }
 
 .hero-card-rule {
